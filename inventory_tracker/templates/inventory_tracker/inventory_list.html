@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory List</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+
+
+<div class="container">
+ <form id="searchform" action="{% url 'inventory_tracker:list' %}" method="get" accept-charset="utf-8">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <i class="fa fa-search"></i>
+      </button>
+      <input class="form-control mr-sm-4" id="searchbox" name="q" type="text" placeholder="Search">
+    </form>
+
+    <h1>Welcome to a list of all the inventory.</h1>
+
+    <table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Serial</th>
+      <th>Value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {% for inventory in inventory %}
+      <tr>
+        <td>{{ inventory.name }}</td>
+        <td>{{ inventory.serial_number }}</td>
+        <td>{{ inventory.price }}</td>
+
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a class="btn btn-primary" href="{% url 'inventory_tracker:create' %}">Create new inventory</a>
+
+</div>
+</body>
+</html>
